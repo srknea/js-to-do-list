@@ -71,6 +71,7 @@ body {
     margin: .5rem;
     font-size: 1.2rem;
     background-color: white;
+    transition: .5s ease-in-out;
 }
 
 .gorev-tanim{
@@ -93,4 +94,25 @@ body {
 .gorev-tamamlandi{
     text-decoration: line-through;
     opacity: 0.5;
+}
+
+
+
+.fa{   
+    /*
+    if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi')
+    || tiklanilanEleman.classList.contains('fa')){
+        console.log("Tamamlandi");
+    }
+    */
+    pointer-events: none;
+    /*
+    if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi'){
+        console.log("Tamamlandi");
+    }
+    */
+}
+
+.kaybol{
+    transform: scale(0);
 }
