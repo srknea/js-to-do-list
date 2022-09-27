@@ -31,15 +31,14 @@ function gorevItemOlustur(gorev){
     const gorevLi = document.createElement('li');
     gorevLi.classList.add('gorev-tanim');
     gorevLi.innerText = gorev;
-    
+    /*start: drag and drop*/    
     gorevLi.draggable = 'true'; 
     gorevLi.setAttribute("ondragstart", "drag(event)");  
     gorevLi.setAttribute("id", "drag1");  
-    
+    /*end: drag and drop*/    
     gorevDiv.appendChild(gorevLi);
 
     
-
     //tamamlandı butonu ekle
     const gorevTamamBtn = document.createElement('button');
     gorevTamamBtn.classList.add('gorev-btn');
@@ -78,7 +77,6 @@ gorevListesi.addEventListener('click', (e) => {
         const silinecekGörev = tiklanilanEleman.parentElement.children[0].innerText;
         //console.log(silinecekGörev);
         localDelete(silinecekGörev);
-        
         
         //console.log("Sil");
         tiklanilanEleman.parentElement.classList.toggle('kaybol');
@@ -134,6 +132,7 @@ function localDelete(gorev){
     localStorage.setItem('myArray', JSON.stringify(myArray));
 }
 
+/*start: drag and drop*/
 function allowDrop(ev) {
     ev.preventDefault();
   }
@@ -149,6 +148,7 @@ function allowDrop(ev) {
     localDelete(silinecekGörev);
     benimDiv.remove();
   }
+/*end: drag and drop*/
 
 //Var olan tüm DOM yapısı yüklendikten sonra aşağıdaki çalışır.
 document.addEventListener('DOMContentLoaded', localRead);

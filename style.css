@@ -113,17 +113,17 @@ body {
     */
 }
 
-
-
 .kaybol{
     transform: scale(0);
 }
 
+/* - - - - - */ 
 .trash-container, .uyari{
     display: flex;
     justify-content: center;
     margin: 20px;
 }
+
 
 #div1 {
     width: 9rem;
