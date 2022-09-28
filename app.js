@@ -133,20 +133,32 @@ function localDelete(gorev){
 }
 
 /*start: drag and drop*/
+let silinecekGörev;
+let listeden;
+
 function allowDrop(ev) {
     ev.preventDefault();
   }
   
+  //sürüke
   function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    
+     //local silme
+     silinecekGörev = ev.target.innerText;
+     console.log(ev.target);
+
+     listeden = ev.target.parentElement;
   }
   
+  //bırak
   function drop(ev) {
     ev.preventDefault();
-    const benimDiv = document.querySelector('.gorev-item');
-    const silinecekGörev = benimDiv.children[0].innerText;
+
     localDelete(silinecekGörev);
-    benimDiv.remove();
+
+    //listeden çıkarma
+    listeden.remove();
   }
 /*end: drag and drop*/
 
