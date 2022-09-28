@@ -96,8 +96,6 @@ body {
     opacity: 0.5;
 }
 
-
-
 .fa{   
     /*
     if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi')
@@ -117,16 +115,46 @@ body {
     transform: scale(0);
 }
 
-/* - - - - - */ 
+/*start: drag and drop*/
 .trash-container, .uyari{
     display: flex;
     justify-content: center;
     margin: 20px;
 }
 
-
 #div1 {
     width: 9rem;
     padding: 10px;
     /*border: 1px solid #aaaaaa;*/
 }
+/*end: drag and drop*/
+
+/*start: alert */
+.alert { 
+    background-color: #2196F3;
+    padding: 20px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+  
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 43px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+/*end: alert */

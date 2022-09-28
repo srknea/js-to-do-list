@@ -162,5 +162,15 @@ function allowDrop(ev) {
   }
 /*end: drag and drop*/
 
+/*start: alert */
+const close = document.getElementsByClassName("closebtn");
+close[0].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+}
+/*end: alert */
+
+
 //Var olan tüm DOM yapısı yüklendikten sonra aşağıdaki çalışır.
 document.addEventListener('DOMContentLoaded', localRead);
