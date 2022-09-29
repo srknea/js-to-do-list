@@ -90,47 +90,45 @@ gorevListesi.addEventListener('click', (e) => {
 })
 
 function localSave(yeniGorev){
-    let myArray;
-    if(localStorage.getItem('myArray') === null){
-        myArray = [];
-    } else {
-        myArray = JSON.parse(localStorage.getItem('myArray'));
-    }
+    let array = localStorageArrayDonustur();
 
-    myArray.push(yeniGorev);
+    array.push(yeniGorev);
 
-    localStorage.setItem('myArray', JSON.stringify(myArray));
+    localStorage.setItem('myArray', JSON.stringify(array));
 }
 
 
 function localRead () {
-    let myArray;
-    if(localStorage.getItem('myArray') === null){
-        myArray = [];
-    } else {
-        myArray = JSON.parse(localStorage.getItem('myArray'));
-    }
-
-    myArray.forEach(value => {     
+    let array = localStorageArrayDonustur();
+    
+    array.forEach(value => {     
         gorevItemOlustur(value);
     });
 }
 
 function localDelete(gorev){
+    let array = localStorageArrayDonustur();
+    
+    //splice ile item sil
+    const silinecekElemanIndex = array.indexOf(gorev);
+    //console.log(silinecekElemanIndex);
+    array.splice(silinecekElemanIndex,1);
+
+    localStorage.setItem('myArray', JSON.stringify(array));
+}
+
+function localStorageArrayDonustur () {
     let myArray;
     if(localStorage.getItem('myArray') === null){
         myArray = [];
     } else {
         myArray = JSON.parse(localStorage.getItem('myArray'));
     }
-    
-    //splice ile item sil
-    const silinecekElemanIndex = myArray.indexOf(gorev);
-    //console.log(silinecekElemanIndex);
-    myArray.splice(silinecekElemanIndex,1);
 
-    localStorage.setItem('myArray', JSON.stringify(myArray));
+    return myArray;
 }
+
+
 
 /*start: drag and drop*/
 let silinecekGörev;
@@ -146,8 +144,7 @@ function allowDrop(ev) {
     
      //local silme
      silinecekGörev = ev.target.innerText;
-     console.log(ev.target);
-
+     
      listeden = ev.target.parentElement;
   }
   
