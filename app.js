@@ -1,8 +1,39 @@
-const yeniGorev = document.querySelector('.input-gorev');
-const yeniGorevEkleBtn = document.querySelector('.btn-gorev-ekle');
-const gorevListesi = document.querySelector('.gorev-listesi');
+//const yeniGorev = document.querySelector('.input-gorev');
+const yeniGorev = document.getElementsByClassName('input-gorev');
+//const yeniGorevEkleBtn = document.querySelector('.btn-gorev-ekle');
+const yeniGorevEkleBtn = document.getElementsByClassName('btn-gorev-ekle');
+//const gorevListesi = document.querySelector('.gorev-listesi');
+const gorevListesi = document.getElementsByClassName('gorev-listesi')
 
 
+
+for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
+  yeniGorevEkleBtn[i].onclick = function(){  
+      //Boş görev eklemeyi engelleme
+      if(yeniGorev[i].value.length > 0){
+        if(i===0){
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i]);
+
+          //local storage
+          localSave(yeniGorev[i].value, 'firstLocalArray');
+
+          yeniGorev[i].value =''; 
+          //Görev eklendikten sonra "Not giriniz" alanını temizler
+        }
+        else if(i===1){
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i]);
+
+          //local storage
+          localSave(yeniGorev[i].value, 'secondLocalArray');
+
+          yeniGorev[i].value =''; 
+          //Görev eklendikten sonra "Not giriniz" alanını temizler
+        }
+      }   
+  }
+}
+
+/*
 yeniGorevEkleBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -20,8 +51,9 @@ yeniGorevEkleBtn.addEventListener('click', (e) => {
   }
 
 })
+*/
 
-function gorevItemOlustur(gorev){
+function gorevItemOlustur(gorev, gorevListesiElemani){
     //div oluşturma
     const gorevDiv = document.createElement('div');
     gorevDiv.classList.add('gorev-item'); //oluşturduğumuz div 'e classname ekledik
@@ -55,10 +87,50 @@ function gorevItemOlustur(gorev){
     gorevDiv.appendChild(gorevSilBtn);
   
     //ul 'ye oluşturduğumuz div 'i ekleme
-    gorevListesi.appendChild(gorevDiv);
+    gorevListesiElemani.appendChild(gorevDiv);
   }
 
+for (let i = 0; i < gorevListesi.length; i++) {
+  gorevListesi[i].addEventListener('click', (e) => {
+    //console.log(e.target);
+    const tiklanilanEleman = e.target;
+    
+    //Tamamlandı
+    if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi')){
+        //console.log("Tamamlandi");
+        tiklanilanEleman.parentElement.classList.toggle('gorev-tamamlandi');
+        //butonun parent elementine yani div 'de : gorev-tamamlandi" class adı yoksa ekler,varsa siler
+    }
+    //Sil
+    if(tiklanilanEleman.classList.contains('gorev-btn-sil')){
+        //local storage sil
+  
+        //console.log(tiklanilanEleman.parentElement);
+        const silinecekGörev = tiklanilanEleman.parentElement.children[0].innerText;
+        //console.log(silinecekGörev);
+        
+        if(i===0){
+          localDelete(silinecekGörev, 'firstLocalArray');
+        }
+        else if(i===1){
+          localDelete(silinecekGörev, 'secondLocalArray');
+        }
+        
+        
+        //console.log("Sil");
+        tiklanilanEleman.parentElement.classList.toggle('kaybol');
+        // animasyon için "kaybol" sınıf adı div'e verildi
+        
+        //animasyon bittikten sonra silme işlemi gercekleşecek
+        tiklanilanEleman.parentElement.addEventListener('transitionend', (e) => {
+            tiklanilanEleman.parentElement.remove();
+        })
+    }
+  })
+}
+  
 
+/*
 gorevListesi.addEventListener('click', (e) => {
     //console.log(e.target);
     const tiklanilanEleman = e.target;
@@ -67,8 +139,7 @@ gorevListesi.addEventListener('click', (e) => {
     if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi')){
         //console.log("Tamamlandi");
         tiklanilanEleman.parentElement.classList.toggle('gorev-tamamlandi');
-        /*butonun parent elementine yani div 'de :
-        "gorev-tamamlandi" class adı yoksa ekler,varsa siler*/
+        //butonun parent elementine yani div 'de : gorev-tamamlandi" class adı yoksa ekler,varsa siler
     }
     //Sil
     if(tiklanilanEleman.classList.contains('gorev-btn-sil')){
@@ -88,6 +159,7 @@ gorevListesi.addEventListener('click', (e) => {
         })
     }
 })
+*/
 
 function localSave(yeniGorev, localArrayName){
     let array = localStorageArrayDonustur(localArrayName);
@@ -99,9 +171,18 @@ function localSave(yeniGorev, localArrayName){
 function localRead (localArrayName) {
     let array = localStorageArrayDonustur(localArrayName);
     
-    array.forEach(value => {     
-        gorevItemOlustur(value);
-    });
+    if(localArrayName === 'firstLocalArray'){
+      array.forEach(value => {     
+        gorevItemOlustur(value, gorevListesi[0]);
+      });
+    }
+
+    if(localArrayName === 'secondLocalArray'){
+      array.forEach(value => {     
+        gorevItemOlustur(value, gorevListesi[1]);
+      });
+    }
+    
 }
 
 function localDelete(gorev, localArrayName){
@@ -125,12 +206,10 @@ function localStorageArrayDonustur (value) {
     return myArray;
 }
 
-
-
 /*start: drag and drop*/
 let silinecekGörev;
 let listeden;
-
+let localArray;
 function allowDrop(ev) {
     ev.preventDefault();
   }
@@ -141,16 +220,21 @@ function allowDrop(ev) {
     
      //local silme
      silinecekGörev = ev.target.innerText;
-     
      listeden = ev.target.parentElement;
+     localArray = ev.target.parentElement.parentElement.parentElement.id;
   }
   
   //bırak
   function drop(ev) {
     ev.preventDefault();
 
-    localDelete(silinecekGörev, 'firstLocalArray');
-
+    if(localArray === 'firstDiv'){
+      localDelete(silinecekGörev, 'firstLocalArray');
+    }
+    else if(localArray === 'secondDiv'){
+      localDelete(silinecekGörev, 'secondLocalArray');
+    }
+    
     //listeden çıkarma
     listeden.remove();
   }
@@ -168,3 +252,4 @@ close[0].onclick = function(){
 
 //Var olan tüm DOM yapısı yüklendikten sonra aşağıdaki çalışır.
 document.addEventListener('DOMContentLoaded', localRead('firstLocalArray'));
+document.addEventListener('DOMContentLoaded', localRead('secondLocalArray'));

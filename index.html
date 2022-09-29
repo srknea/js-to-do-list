@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Not Sepeti</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
 </head>
 
 <body>
@@ -20,37 +21,70 @@
         </h1>
     </header>
 
-    <form class="gorev-form" action="#">
-        <input type="text" class="form-item input-gorev" placeholder="Notu giriniz">
-        <button class="form-item btn-gorev-ekle" type="submit">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-    </form>
+    <div class="container">
+        <div id="firstDiv"class="gorev-container">
+            <form class="gorev-form" action="#">
+                <input type="text" class="form-item input-gorev" placeholder="Genel">
+                <button class="form-item btn-gorev-ekle" type="submit">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </form>
+            <ul class="gorev-listesi">
+                <!-- 
+                    <div class="gorev-item gorev-tamamlandi">
+                    <li class="gorev-tanim">Markete git</li>
+                    <button class="gorev-btn gorev-btn-tamamlandi">
+                        <i class="fa fa-check ali" aria-hidden="true"></i>
+                    </button>
+                    <button class="gorev-btn gorev-btn-sil">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
 
-    <div class="gorev-container">
-        <ul class="gorev-listesi">
-            <!-- 
+                <div class="gorev-item">
+                    <li class="gorev-tanim">Odayı temizle</li>
+                    <button class="gorev-btn gorev-btn-tamamlandi">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="gorev-btn gorev-btn-sil">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+                -->
+            </ul>        
+        </div>
+
+        <div id="secondDiv" class="gorev-container">
+            <form class="gorev-form" action="#">
+                <input type="text" class="form-item input-gorev" placeholder="Acil ve Önemli">
+                <button class="form-item btn-gorev-ekle" type="submit">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </form>    
+            <ul class="gorev-listesi">
+                <!--
                 <div class="gorev-item gorev-tamamlandi">
-                <li class="gorev-tanim">Markete git</li>
-                <button class="gorev-btn gorev-btn-tamamlandi">
-                    <i class="fa fa-check ali" aria-hidden="true"></i>
-                </button>
-                <button class="gorev-btn gorev-btn-sil">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
+                    <li class="gorev-tanim">Markete git</li>
+                    <button class="gorev-btn gorev-btn-tamamlandi">
+                        <i class="fa fa-check ali" aria-hidden="true"></i>
+                    </button>
+                    <button class="gorev-btn gorev-btn-sil">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
 
-            <div class="gorev-item">
-                <li class="gorev-tanim">Odayı temizle</li>
-                <button class="gorev-btn gorev-btn-tamamlandi">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                </button>
-                <button class="gorev-btn gorev-btn-sil">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-             -->
-        </ul>
+                <div class="gorev-item">
+                    <li class="gorev-tanim">Odayı temizle</li>
+                    <button class="gorev-btn gorev-btn-tamamlandi">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="gorev-btn gorev-btn-sil">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>   
+                -->
+            </ul>
+        </div>
     </div>
 
     <div class="trash-container">
@@ -67,5 +101,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
-
