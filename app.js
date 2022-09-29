@@ -1,11 +1,6 @@
-//const yeniGorev = document.querySelector('.input-gorev');
 const yeniGorev = document.getElementsByClassName('input-gorev');
-//const yeniGorevEkleBtn = document.querySelector('.btn-gorev-ekle');
 const yeniGorevEkleBtn = document.getElementsByClassName('btn-gorev-ekle');
-//const gorevListesi = document.querySelector('.gorev-listesi');
 const gorevListesi = document.getElementsByClassName('gorev-listesi')
-
-
 
 for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
   yeniGorevEkleBtn[i].onclick = function(){  
@@ -32,26 +27,6 @@ for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
       }   
   }
 }
-
-/*
-yeniGorevEkleBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  //Boş görev eklemeyi engelleme
-  if(yeniGorev.value.length > 0){
-    gorevItemOlustur(yeniGorev.value);
-
-    //local storage
-    localSave(yeniGorev.value, 'firstLocalArray');
-
-    yeniGorev.value =''; 
-    //Görev eklendikten sonra "Not giriniz" alanını temizler
-  }else{
-    alert("Lütfen bir şeyler yazınız !");
-  }
-
-})
-*/
 
 function gorevItemOlustur(gorev, gorevListesiElemani){
     //div oluşturma
@@ -128,38 +103,6 @@ for (let i = 0; i < gorevListesi.length; i++) {
     }
   })
 }
-  
-
-/*
-gorevListesi.addEventListener('click', (e) => {
-    //console.log(e.target);
-    const tiklanilanEleman = e.target;
-
-    //Tamamlandı
-    if(tiklanilanEleman.classList.contains('gorev-btn-tamamlandi')){
-        //console.log("Tamamlandi");
-        tiklanilanEleman.parentElement.classList.toggle('gorev-tamamlandi');
-        //butonun parent elementine yani div 'de : gorev-tamamlandi" class adı yoksa ekler,varsa siler
-    }
-    //Sil
-    if(tiklanilanEleman.classList.contains('gorev-btn-sil')){
-        //local storage sil
-        //console.log(tiklanilanEleman.parentElement);
-        const silinecekGörev = tiklanilanEleman.parentElement.children[0].innerText;
-        //console.log(silinecekGörev);
-        localDelete(silinecekGörev, 'firstLocalArray');
-        
-        //console.log("Sil");
-        tiklanilanEleman.parentElement.classList.toggle('kaybol');
-        // animasyon için "kaybol" sınıf adı div'e verildi
-        
-        //animasyon bittikten sonra silme işlemi gercekleşecek
-        tiklanilanEleman.parentElement.addEventListener('transitionend', (e) => {
-            tiklanilanEleman.parentElement.remove();
-        })
-    }
-})
-*/
 
 function localSave(yeniGorev, localArrayName){
     let array = localStorageArrayDonustur(localArrayName);
