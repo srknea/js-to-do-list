@@ -11,7 +11,7 @@ yeniGorevEkleBtn.addEventListener('click', (e) => {
     gorevItemOlustur(yeniGorev.value);
 
     //local storage
-    localSave(yeniGorev.value);
+    localSave(yeniGorev.value, 'firstLocalArray');
 
     yeniGorev.value =''; 
     //Görev eklendikten sonra "Not giriniz" alanını temizler
@@ -76,7 +76,7 @@ gorevListesi.addEventListener('click', (e) => {
         //console.log(tiklanilanEleman.parentElement);
         const silinecekGörev = tiklanilanEleman.parentElement.children[0].innerText;
         //console.log(silinecekGörev);
-        localDelete(silinecekGörev);
+        localDelete(silinecekGörev, 'firstLocalArray');
         
         //console.log("Sil");
         tiklanilanEleman.parentElement.classList.toggle('kaybol');
@@ -89,42 +89,39 @@ gorevListesi.addEventListener('click', (e) => {
     }
 })
 
-function localSave(yeniGorev){
-    let array = localStorageArrayDonustur();
-
+function localSave(yeniGorev, localArrayName){
+    let array = localStorageArrayDonustur(localArrayName);
     array.push(yeniGorev);
-
-    localStorage.setItem('firstArray', JSON.stringify(array));
+    localStorage.setItem(localArrayName, JSON.stringify(array));
 }
 
 
-function localRead () {
-    let array = localStorageArrayDonustur();
+function localRead (localArrayName) {
+    let array = localStorageArrayDonustur(localArrayName);
     
     array.forEach(value => {     
         gorevItemOlustur(value);
     });
 }
 
-function localDelete(gorev){
-    let array = localStorageArrayDonustur();
+function localDelete(gorev, localArrayName){
+    let array = localStorageArrayDonustur(localArrayName);
     
     //splice ile item sil
     const silinecekElemanIndex = array.indexOf(gorev);
     //console.log(silinecekElemanIndex);
     array.splice(silinecekElemanIndex,1);
 
-    localStorage.setItem('firstArray', JSON.stringify(array));
+    localStorage.setItem(localArrayName, JSON.stringify(array));
 }
 
 function localStorageArrayDonustur (value) {
     let myArray;
-    if(localStorage.getItem('firstArray') === null){
+    if(localStorage.getItem(value) === null){
         myArray = [];
     } else {
-        myArray = JSON.parse(localStorage.getItem('firstArray'));
+        myArray = JSON.parse(localStorage.getItem(value));
     }
-
     return myArray;
 }
 
@@ -152,7 +149,7 @@ function allowDrop(ev) {
   function drop(ev) {
     ev.preventDefault();
 
-    localDelete(silinecekGörev);
+    localDelete(silinecekGörev, 'firstLocalArray');
 
     //listeden çıkarma
     listeden.remove();
@@ -170,4 +167,4 @@ close[0].onclick = function(){
 
 
 //Var olan tüm DOM yapısı yüklendikten sonra aşağıdaki çalışır.
-document.addEventListener('DOMContentLoaded', localRead);
+document.addEventListener('DOMContentLoaded', localRead('firstLocalArray'));
