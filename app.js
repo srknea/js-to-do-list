@@ -94,7 +94,7 @@ function localSave(yeniGorev){
 
     array.push(yeniGorev);
 
-    localStorage.setItem('myArray', JSON.stringify(array));
+    localStorage.setItem('firstArray', JSON.stringify(array));
 }
 
 
@@ -114,15 +114,15 @@ function localDelete(gorev){
     //console.log(silinecekElemanIndex);
     array.splice(silinecekElemanIndex,1);
 
-    localStorage.setItem('myArray', JSON.stringify(array));
+    localStorage.setItem('firstArray', JSON.stringify(array));
 }
 
-function localStorageArrayDonustur () {
+function localStorageArrayDonustur (value) {
     let myArray;
-    if(localStorage.getItem('myArray') === null){
+    if(localStorage.getItem('firstArray') === null){
         myArray = [];
     } else {
-        myArray = JSON.parse(localStorage.getItem('myArray'));
+        myArray = JSON.parse(localStorage.getItem('firstArray'));
     }
 
     return myArray;
