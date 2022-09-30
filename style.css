@@ -19,13 +19,27 @@ body {
     min-height: 100vh;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 .main-title{
     font-size: 2rem;
     color: white;
 }
 
-.header, .gorev-form{
+.header{
     min-height: 20vh;
+    /*background-color: red;*/
+    margin: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gorev-form{
+    min-height: 10vh;
     /*background-color: red;*/
     margin: .5rem;
     display: flex;
@@ -87,10 +101,12 @@ body {
     border: none;
     font-size: 1.2rem;
     padding: 1.2rem;
+    cursor: pointer;
 }
 
 .gorev-btn-sil{
     background-color: red;
+    cursor: pointer;
 }
 
 .gorev-tamamlandi{
@@ -118,7 +134,7 @@ body {
 }
 
 /*start: drag and drop*/
-.trash-container, .uyari{
+.trash-container{
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -156,12 +172,47 @@ body {
     transition: 0.3s;
 }
 
+.warning {
+    background-color: #ff9800;
+    display: none;
+}
+
 .closebtn:hover {
     color: black;
 }
 /*end: alert */
 
-.container{
-    display: flex;
-    justify-content: center;
+@media all and (max-width: 768px){
+    .container{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .gorev-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    .gorev-listesi{
+        list-style: none;
+        width: 80%;
+    }
+
+    .trash-container{
+        display: none;
+    }
+
+    .info{
+        display: none;
+    }
+    
+    .warning {
+        margin-top: 20px;
+        display: block;
+        display: flex;
+        justify-content: space-around;
+    }
 }
