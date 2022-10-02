@@ -7,7 +7,7 @@ for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
       //Boş görev eklemeyi engelleme
       if(yeniGorev[i].value.length > 0){
         if(i===0){
-          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i]);
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i], false);
 
           //local storage
           localSave(yeniGorev[i].value, 'firstLocalArray');
@@ -16,7 +16,7 @@ for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
           //Görev eklendikten sonra "Not giriniz" alanını temizler
         }
         else if(i===1){
-          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i]);
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i], false);
 
           //local storage
           localSave(yeniGorev[i].value, 'secondLocalArray');
@@ -28,11 +28,13 @@ for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
   }
 }
 
-function gorevItemOlustur(gorev, gorevListesiElemani){
+function gorevItemOlustur(gorev, gorevListesiElemani, cizgi){
     //div oluşturma
     const gorevDiv = document.createElement('div');
     gorevDiv.classList.add('gorev-item'); //oluşturduğumuz div 'e classname ekledik
-    //gorevDiv.classList.add('gorev-tamamlandi');
+    if(cizgi){
+      gorevDiv.classList.add('gorev-tamamlandi');
+    }
     
     //li oluşturma
     const gorevLi = document.createElement('li');
@@ -116,13 +118,13 @@ function localRead (localArrayName) {
     
     if(localArrayName === 'firstLocalArray'){
       array.forEach(value => {     
-        gorevItemOlustur(value, gorevListesi[0]);
+        gorevItemOlustur(value, gorevListesi[0], false);
       });
     }
 
     if(localArrayName === 'secondLocalArray'){
       array.forEach(value => {     
-        gorevItemOlustur(value, gorevListesi[1]);
+        gorevItemOlustur(value, gorevListesi[1],false);
       });
     }
     
@@ -148,6 +150,19 @@ function localStorageArrayDonustur (value) {
     }
     return myArray;
 }
+
+/* start: demo */
+demoListItem('firstLocalArray', gorevListesi[0]);
+demoListItem('secondLocalArray', gorevListesi[1]);
+
+function demoListItem (localArrayName,gorevListesiElemani) {
+  let array = localStorageArrayDonustur(localArrayName);
+  console.log(array);
+  if(array.length === 0){
+    gorevItemOlustur('Test', gorevListesiElemani, true);  
+  }
+}
+/*end: demo */
 
 /*start: drag and drop*/
 let silinecekGörev;
