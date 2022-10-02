@@ -207,46 +207,58 @@ function drag(ev) {
 function drop(ev) {
   ev.preventDefault();
   
-  //local delete
-  if(localArray === 'firstDiv'){
-    localDelete(silinecekGörev, 'firstLocalArray');
-    
-  }
-  else if(localArray === 'secondDiv'){
-    localDelete(silinecekGörev, 'secondLocalArray');
-    
-  }
-  else if(localArray === 'thirdDiv'){
-    localDelete(silinecekGörev, 'thirdLocalArray');
-    
-  }
-  else if(localArray === 'fourthDiv'){
-    localDelete(silinecekGörev, 'fourthLocalArray');
-    
-  }
+  console.log(ev.target.parentElement.parentElement);
+  //console.log(ev.target);
 
-  //listeden çıkarma
-  listeden.remove();
+  /*bubbling bug control*/  
+  if(ev.target.id == "ul1" || ev.target.id == "ul2" || ev.target.id == "ul3" || ev.target.id == "ul4"){
+      //local delete
+    if(localArray === 'firstDiv'){
+      localDelete(silinecekGörev, 'firstLocalArray');
+      
+    }
+    else if(localArray === 'secondDiv'){
+      localDelete(silinecekGörev, 'secondLocalArray');
+      
+    }
+    else if(localArray === 'thirdDiv'){
+      localDelete(silinecekGörev, 'thirdLocalArray');
+      
+    }
+    else if(localArray === 'fourthDiv'){
+      localDelete(silinecekGörev, 'fourthLocalArray');
+      
+    }
 
-  let gorevTanım = silinecekGörev;
+    //listeden çıkarma
+    listeden.remove();
 
-  if(ev.target.id === 'ul1'){
-    gorevItemOlustur(gorevTanım, gorevListesi[0], false);
-    localSave(gorevTanım, 'firstLocalArray');
+    let gorevTanım = silinecekGörev;
+
+    /*liste belirleme*/
+    /*bubbling control*/  
+    if(ev.target.id === 'ul1'){
+      gorevItemOlustur(gorevTanım, gorevListesi[0], false);
+      localSave(gorevTanım, 'firstLocalArray');
+    }
+    else if(ev.target.id === 'ul2'){
+      gorevItemOlustur(gorevTanım, gorevListesi[1], false);
+      localSave(gorevTanım, 'secondLocalArray');
+    }
+    else if(ev.target.id === 'ul3'){
+      gorevItemOlustur(gorevTanım, gorevListesi[2], false);
+      localSave(gorevTanım, 'thirdLocalArray');
+      
+    }
+    else if(ev.target.id === 'ul4'){
+      gorevItemOlustur(gorevTanım, gorevListesi[3], false);
+      localSave(gorevTanım, 'fourthLocalArray');
+    }
   }
-  else if(ev.target.id === 'ul2'){
-    gorevItemOlustur(gorevTanım, gorevListesi[1], false);
-    localSave(gorevTanım, 'secondLocalArray');
+  else{
+    alert("Hedef liste içerisindeki boş bir alana sürükleyiniz !")
   }
-  else if(ev.target.id === 'ul3'){
-    gorevItemOlustur(gorevTanım, gorevListesi[2], false);
-    localSave(gorevTanım, 'thirdLocalArray');
-    
-  }
-  else if(ev.target.id === 'ul4'){
-    gorevItemOlustur(gorevTanım, gorevListesi[3], false);
-    localSave(gorevTanım, 'fourthLocalArray');
-  }
+  
 }
 /*end: drag and drop*/
 
