@@ -133,22 +133,9 @@ body {
     transform: scale(0);
 }
 
-/*start: drag and drop*/
-.trash-container{
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-}
-
-#div1 {
-    width: 9rem;
-    padding: 10px;
-    /*border: 1px solid #aaaaaa;*/
-}
-/*end: drag and drop*/
-
 /*start: alert */
 .alert { 
+    margin-top: 20px;
     background-color: #2196F3;
     padding: 20px;
     color: white;
@@ -204,15 +191,17 @@ body {
     .trash-container{
         display: none;
     }
-
-    .info{
-        display: none;
-    }
-    
+  
     .warning {
         margin-top: 20px;
         display: block;
         display: flex;
         justify-content: space-around;
     }
+}
+
+#ul1 , #ul2, #ul3, #ul4 {
+    border-style: dotted;
+    min-height: 400px;
+    margin: 0px 5px;
 }

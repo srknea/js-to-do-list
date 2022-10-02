@@ -185,59 +185,69 @@ function localStorageArrayDonustur (value) {
     return myArray;
 }
 
-/* start: demo */
-demoListItem('firstLocalArray', gorevListesi[0]);
-demoListItem('secondLocalArray', gorevListesi[1]);
-demoListItem('thirdLocalArray', gorevListesi[2]);
-demoListItem('fourthLocalArray', gorevListesi[3]);
-
-function demoListItem (localArrayName,gorevListesiElemani) {
-  let array = localStorageArrayDonustur(localArrayName);
-  console.log(array);
-  if(array.length === 0){
-    gorevItemOlustur('Test', gorevListesiElemani, true);  
-  }
-}
-/*end: demo */
-
 /*start: drag and drop*/
 let silinecekGörev;
 let listeden;
 let localArray;
 function allowDrop(ev) {
-    ev.preventDefault();
-  }
+  ev.preventDefault();
+}
   
-  //sürüke
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+//sürüke
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  
+    //local silme
+    silinecekGörev = ev.target.innerText;
+    listeden = ev.target.parentElement;
+    localArray = ev.target.parentElement.parentElement.parentElement.id;
+}
+
+//bırak
+function drop(ev) {
+  ev.preventDefault();
+  
+  //local delete
+  if(localArray === 'firstDiv'){
+    localDelete(silinecekGörev, 'firstLocalArray');
     
-     //local silme
-     silinecekGörev = ev.target.innerText;
-     listeden = ev.target.parentElement;
-     localArray = ev.target.parentElement.parentElement.parentElement.id;
   }
-  
-  //bırak
-  function drop(ev) {
-    ev.preventDefault();
-
-    if(localArray === 'firstDiv'){
-      localDelete(silinecekGörev, 'firstLocalArray');
-    }
-    else if(localArray === 'secondDiv'){
-      localDelete(silinecekGörev, 'secondLocalArray');
-    }
-    else if(localArray === 'thirdDiv'){
-      localDelete(silinecekGörev, 'thirdLocalArray');
-    }
-    else if(localArray === 'fourthDiv'){
-      localDelete(silinecekGörev, 'thirdLocalArray');
-    }
-
-    //listeden çıkarma
-    listeden.remove();
+  else if(localArray === 'secondDiv'){
+    localDelete(silinecekGörev, 'secondLocalArray');
+    
   }
+  else if(localArray === 'thirdDiv'){
+    localDelete(silinecekGörev, 'thirdLocalArray');
+    
+  }
+  else if(localArray === 'fourthDiv'){
+    localDelete(silinecekGörev, 'fourthLocalArray');
+    
+  }
+
+  //listeden çıkarma
+  listeden.remove();
+
+  let gorevTanım = silinecekGörev;
+
+  if(ev.target.id === 'ul1'){
+    gorevItemOlustur(gorevTanım, gorevListesi[0], false);
+    localSave(gorevTanım, 'firstLocalArray');
+  }
+  else if(ev.target.id === 'ul2'){
+    gorevItemOlustur(gorevTanım, gorevListesi[1], false);
+    localSave(gorevTanım, 'secondLocalArray');
+  }
+  else if(ev.target.id === 'ul3'){
+    gorevItemOlustur(gorevTanım, gorevListesi[2], false);
+    localSave(gorevTanım, 'thirdLocalArray');
+    
+  }
+  else if(ev.target.id === 'ul4'){
+    gorevItemOlustur(gorevTanım, gorevListesi[3], false);
+    localSave(gorevTanım, 'fourthLocalArray');
+  }
+}
 /*end: drag and drop*/
 
 /*start: alert */
