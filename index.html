@@ -25,7 +25,7 @@
         <div id="firstDiv"class="gorev-container">
             <!-- "javascript:void(0);"  form action is none-->
             <form class="gorev-form" action="javascript:void(0);">
-                <input type="text" class="form-item input-gorev" placeholder="Genel">
+                <input type="text" class="form-item input-gorev" placeholder="Önemli - Acil">
                 <button class="form-item btn-gorev-ekle" type="submit">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
@@ -57,37 +57,49 @@
 
         <div id="secondDiv" class="gorev-container">
             <form class="gorev-form" action="javascript:void(0);">
-                <input type="text" class="form-item input-gorev" placeholder="Acil ve Önemli">
+                <input type="text" class="form-item input-gorev" placeholder="Önemli - Acil Değil">
                 <button class="form-item btn-gorev-ekle" type="submit">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
             </form>    
             <ul class="gorev-listesi">
-                <!--
-                <div class="gorev-item gorev-tamamlandi">
-                    <li class="gorev-tanim">Markete git</li>
-                    <button class="gorev-btn gorev-btn-tamamlandi">
-                        <i class="fa fa-check ali" aria-hidden="true"></i>
-                    </button>
-                    <button class="gorev-btn gorev-btn-sil">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
 
-                <div class="gorev-item">
-                    <li class="gorev-tanim">Odayı temizle</li>
-                    <button class="gorev-btn gorev-btn-tamamlandi">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </button>
-                    <button class="gorev-btn gorev-btn-sil">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>   
-                -->
+
+
             </ul>
         </div>
+
+        <div id="thirdDiv" class="gorev-container">
+            <form class="gorev-form" action="javascript:void(0);">
+                <input type="text" class="form-item input-gorev" placeholder="Önemsiz - Acil">
+                <button class="form-item btn-gorev-ekle" type="submit">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </form>    
+            <ul class="gorev-listesi">
+    
+    
+            </ul>
+        </div>
+    
+        <div id="fourthDiv" class="gorev-container">
+            <form class="gorev-form" action="javascript:void(0);">
+                <input type="text" class="form-item input-gorev" placeholder="Önemsiz - Acil Değil">
+                <button class="form-item btn-gorev-ekle" type="submit">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </form>    
+            <ul class="gorev-listesi">
+    
+    
+                
+            </ul>
+        </div>
+    
     </div>
 
+
+    
     <div class="trash-container">
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
             <i class="fa fa-trash" aria-hidden="true" style="font-size: 9rem;"></i>

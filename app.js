@@ -24,6 +24,24 @@ for (let i = 0; i < yeniGorevEkleBtn.length; i++) {
           yeniGorev[i].value =''; 
           //Görev eklendikten sonra "Not giriniz" alanını temizler
         }
+        else if(i===2){
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i], false);
+
+          //local storage
+          localSave(yeniGorev[i].value, 'thirdLocalArray');
+
+          yeniGorev[i].value =''; 
+          //Görev eklendikten sonra "Not giriniz" alanını temizler
+        }
+        else if(i===3){
+          gorevItemOlustur(yeniGorev[i].value, gorevListesi[i], false);
+
+          //local storage
+          localSave(yeniGorev[i].value, 'fourthLocalArray');
+
+          yeniGorev[i].value =''; 
+          //Görev eklendikten sonra "Not giriniz" alanını temizler
+        }
       }   
   }
 }
@@ -92,7 +110,12 @@ for (let i = 0; i < gorevListesi.length; i++) {
         else if(i===1){
           localDelete(silinecekGörev, 'secondLocalArray');
         }
-        
+        else if(i===2){
+          localDelete(silinecekGörev, 'thirdLocalArray');
+        }
+        else if(i===3){
+          localDelete(silinecekGörev, 'fourthLocalArray');
+        }
         
         //console.log("Sil");
         tiklanilanEleman.parentElement.classList.toggle('kaybol');
@@ -127,7 +150,18 @@ function localRead (localArrayName) {
         gorevItemOlustur(value, gorevListesi[1],false);
       });
     }
-    
+
+    if(localArrayName === 'thirdLocalArray'){
+      array.forEach(value => {     
+        gorevItemOlustur(value, gorevListesi[2],false);
+      });
+    }
+
+    if(localArrayName === 'fourthLocalArray'){
+      array.forEach(value => {     
+        gorevItemOlustur(value, gorevListesi[3],false);
+      });
+    }
 }
 
 function localDelete(gorev, localArrayName){
@@ -154,6 +188,8 @@ function localStorageArrayDonustur (value) {
 /* start: demo */
 demoListItem('firstLocalArray', gorevListesi[0]);
 demoListItem('secondLocalArray', gorevListesi[1]);
+demoListItem('thirdLocalArray', gorevListesi[2]);
+demoListItem('fourthLocalArray', gorevListesi[3]);
 
 function demoListItem (localArrayName,gorevListesiElemani) {
   let array = localStorageArrayDonustur(localArrayName);
@@ -192,7 +228,13 @@ function allowDrop(ev) {
     else if(localArray === 'secondDiv'){
       localDelete(silinecekGörev, 'secondLocalArray');
     }
-    
+    else if(localArray === 'thirdDiv'){
+      localDelete(silinecekGörev, 'thirdLocalArray');
+    }
+    else if(localArray === 'fourthDiv'){
+      localDelete(silinecekGörev, 'thirdLocalArray');
+    }
+
     //listeden çıkarma
     listeden.remove();
   }
@@ -215,3 +257,5 @@ for (i = 0; i < close.length; i++) {
 //Var olan tüm DOM yapısı yüklendikten sonra aşağıdaki çalışır.
 document.addEventListener('DOMContentLoaded', localRead('firstLocalArray'));
 document.addEventListener('DOMContentLoaded', localRead('secondLocalArray'));
+document.addEventListener('DOMContentLoaded', localRead('thirdLocalArray'));
+document.addEventListener('DOMContentLoaded', localRead('fourthLocalArray'));
