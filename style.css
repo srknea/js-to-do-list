@@ -169,7 +169,7 @@ body {
 }
 /*end: alert */
 
-@media all and (max-width: 768px){
+@media all and (max-width: 1450px){
     .container{
         flex-direction: column;
         justify-content: center;
